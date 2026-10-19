@@ -66,20 +66,23 @@ def metrics(d, v: Ventricle, cycles: int):
     last = window(d, c0, c0 + T)
     ivpg = d["p_base"] - d["p_apex"]
     dA = np.gradient(d["exact_area"], d["t"])
-    leak = np.trapezoid(np.abs(d["q_row"][last] + dA[last]), d["t"][last]) / np.trapezoid(
+    leak = np.trapezoid(np.abs(d["q_row"][last] - dA[last]), d["t"][last]) / np.trapezoid(
         np.abs(dA[last]), d["t"][last])
+    p_endo = endocardial_power(d)
     out = dict(
         ivpg_peak_e_mmHg=float(np.nanmax(ivpg[e]) / MMHG),
         p_min_e_mmHg=float(np.nanmin(d["p_min"][e]) / MMHG),
         p_apex_min_e_mmHg=float(np.nanmin(d["p_apex"][e]) / MMHG),
-        wall_work_diastole_mJ_per_m=1e3 * integrate(d, "power_wall", dia),
-        wall_work_systole_mJ_per_m=1e3 * integrate(d, "power_wall", sys),
+        endo_work_diastole_mJ_per_m=1e3 * float(np.trapezoid(p_endo[dia], d["t"][dia])),
+        endo_work_e_wave_mJ_per_m=1e3 * float(np.trapezoid(p_endo[e], d["t"][e])),
+        endo_work_systole_mJ_per_m=1e3 * float(np.trapezoid(p_endo[sys], d["t"][sys])),
         dissipation_cycle_mJ_per_m=1e3 * integrate(d, "dissipation", last),
         dissipation_diastole_mJ_per_m=1e3 * integrate(d, "dissipation", dia),
         ke_peak_e_mJ_per_m=1e3 * float(np.nanmax(d["ke"][e])),
         flux_mismatch=float(leak),
         speed_cavity_diastole_mm_s=1e3 * float(np.nanmean(d["speed_cav"][dia])),
-        speed_layer_diastole_mm_s=1e3 * float(np.nanmean(d["speed_layer"][dia])),
+        speed_layer_diastole_mm_s=(1e3 * float(np.nanmean(d["speed_layer"][dia]))
+                                   if np.isfinite(d["speed_layer"][dia]).any() else None),
         u_max_m_s=float(np.nanmax(d["umax"][last])),
     )
     # residual of the original end diastolic blood at each later end diastole
@@ -93,6 +96,18 @@ def metrics(d, v: Ventricle, cycles: int):
     out["ef"] = float(ef)
     out["mixing_reference"] = [float((1 - ef) ** n) for n in range(1, cycles + 1)]
     return out
+
+
+def endocardial_power(d):
+    """Power the endocardium delivers to the cavity blood (W per m depth).
+
+    Mechanical energy balance of the cavity: dKE/dt + dissipation minus the
+    flux of p + rho |u|^2 / 2 entering through the valve plane, with pressure
+    measured against the atrial reference. Positive in diastole means the
+    wall pays to draw blood in against the atrial reference.
+    """
+    dke = np.gradient(d["ke"], d["t"])
+    return dke + d["dissipation"] - d["e_row"]
 
 
 def endocardial_length(v: Ventricle, t):
@@ -206,10 +221,10 @@ def fig_traces(runs, cycles, path):
         axes[0].plot(tt, dA * 1e4, color=COLOR[kind], lw=1.6, label=LABEL[kind])
         ivpg = (d["p_base"] - d["p_apex"])[m] / MMHG
         axes[1].plot(tt, ivpg, color=COLOR[kind], lw=1.6)
-        axes[2].plot(tt, d["power_wall"][m], color=COLOR[kind], lw=1.6)
+        axes[2].plot(tt, endocardial_power(d)[m], color=COLOR[kind], lw=1.6)
     style(axes[0], ylabel="Outflow, $-dA/dt$ (cm$^2$/s)")
     style(axes[1], ylabel="Base minus apex pressure (mmHg)")
-    style(axes[2], "Time in cycle (ms)", "Wall power into blood (W/m)")
+    style(axes[2], "Time in cycle (ms)", "Endocardial power into cavity blood (W/m)")
     for ax in axes:
         for tb in (v.cycle.t_ej, v.cycle.t_e0, v.cycle.t_e1, v.cycle.t_a0, v.cycle.t_a1):
             ax.axvline(tb * 1e3, color=GRID_INK, lw=0.8)

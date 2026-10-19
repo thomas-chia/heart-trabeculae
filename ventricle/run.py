@@ -59,7 +59,7 @@ def run(kind: str, cycles: int = 3, dt_max: float = 1e-4, cfl: float = 0.3,
     in_base = np.abs(X[:, row]) < v.a_base
 
     rec = {k: [] for k in (
-        "t", "area", "q_row", "p_base", "p_apex", "p_min", "power_wall",
+        "t", "area", "q_row", "e_row", "p_base", "p_apex", "p_min", "power_wall",
         "dissipation", "ke", "residual", "residual_layer", "speed_layer",
         "speed_cav", "umax", "div_cav")}
     snaps = {}
@@ -93,6 +93,9 @@ def run(kind: str, cycles: int = 3, dt_max: float = 1e-4, cfl: float = 0.3,
             rec["t"].append(t)
             rec["area"].append(cav.sum() * dx * dx)
             rec["q_row"].append(-(ns.v[in_base, row]).sum() * dx)
+            # mechanical energy flux into the cavity through the valve plane
+            prow, urow, vrow = p[in_base, row], ns.u[in_base, row], ns.v[in_base, row]
+            rec["e_row"].append(((prow + 0.5 * RHO_BLOOD * (urow**2 + vrow**2)) * -vrow).sum() * dx)
             rec["p_base"].append(p[base_box & cav].mean() if (base_box & cav).any() else np.nan)
             rec["p_apex"].append(p[apex_box].mean() if apex_box.any() else np.nan)
             rec["p_min"].append(p[fluid].min())
