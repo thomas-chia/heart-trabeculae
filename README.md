@@ -5,10 +5,14 @@ Testing the claim that trabeculae carneae keep ventricular walls from sticking t
 * `squeeze_film/reynolds.py`: Tier 1 Reynolds lubrication solver for smooth, grooved and fractal endocardial surfaces
 * `squeeze_film/experiments.py`: physiological sweeps and figures
 * `tests/`: verification against analytic solutions
-* `RESULTS.md`: findings, verdict and limitations
+* `RESULTS.md`: Tier 1 findings, verdict and limitations
+* `ventricle/`: Tier 2 2D long axis ventricle (penalized Navier Stokes, prescribed kinematics, valves, Tier 1 film closure)
+* `RESULTS_TIER2.md`: Tier 2 findings, verdict and limitations
 
 ```
 pip install -r requirements.txt
 pytest
 python -m squeeze_film.experiments
+for k in trab smooth_crest smooth_vol; do python -m ventricle.run --kind $k --cycles 3; done
+python -m ventricle.analyze
 ```

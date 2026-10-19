@@ -1,0 +1,253 @@
+{
+  "grid": {
+    "dx_mm": 0.25,
+    "nx": 300,
+    "ny": 500,
+    "h_res_mm": 0.75,
+    "cycles": 3
+  },
+  "resolved": {
+    "trab": {
+      "ivpg_peak_e_mmHg": 2.7875186673246115,
+      "p_min_e_mmHg": -17.607863269513157,
+      "p_apex_min_e_mmHg": -3.695408674207884,
+      "endo_work_diastole_mJ_per_m": -34.70375877695821,
+      "endo_work_e_wave_mJ_per_m": -31.86877387770076,
+      "endo_work_systole_mJ_per_m": 1089.9664787299403,
+      "dissipation_cycle_mJ_per_m": 27.190741370424696,
+      "dissipation_diastole_mJ_per_m": 15.471064617367755,
+      "ke_peak_e_mJ_per_m": 94.4989364558516,
+      "flux_mismatch": 0.05903484184027853,
+      "speed_cavity_diastole_mm_s": 118.59525341395248,
+      "speed_layer_diastole_mm_s": 29.075513137086972,
+      "u_max_m_s": 1.3139146147850365,
+      "residual_at_ed": [
+        0.43716489694504324,
+        0.2570474706109803,
+        0.1724339949998914
+      ],
+      "layer_old_blood_at_ed": 0.5629593951503722,
+      "ef": 0.5391570531686718,
+      "mixing_reference": [
+        0.4608429468313282,
+        0.2123762216441824,
+        0.09787208381940832
+      ],
+      "steps": 26023,
+      "wall_clock_s": 2194.5186200141907
+    },
+    "smooth_crest": {
+      "ivpg_peak_e_mmHg": 2.328738476208726,
+      "p_min_e_mmHg": -7.6014095740135055,
+      "p_apex_min_e_mmHg": -3.1278153468188044,
+      "endo_work_diastole_mJ_per_m": -33.22787271841639,
+      "endo_work_e_wave_mJ_per_m": -30.594133717130227,
+      "endo_work_systole_mJ_per_m": 1001.5972754243978,
+      "dissipation_cycle_mJ_per_m": 21.977323572118788,
+      "dissipation_diastole_mJ_per_m": 11.946043379575581,
+      "ke_peak_e_mJ_per_m": 88.56117201638425,
+      "flux_mismatch": 0.06707006463069365,
+      "speed_cavity_diastole_mm_s": 115.44661443434921,
+      "speed_layer_diastole_mm_s": null,
+      "u_max_m_s": 1.2421476741164377,
+      "residual_at_ed": [
+        0.4407797308550246,
+        0.2634762395264788,
+        0.1728906435297935
+      ],
+      "layer_old_blood_at_ed": 0.0,
+      "ef": 0.5526786231446885,
+      "mixing_reference": [
+        0.4473213768553115,
+        0.2000964141917316,
+        0.08950740350005607
+      ],
+      "steps": 25238,
+      "wall_clock_s": 1917.9189975261688
+    },
+    "smooth_vol": {
+      "ivpg_peak_e_mmHg": 2.038270324954553,
+      "p_min_e_mmHg": -4.295808989258033,
+      "p_apex_min_e_mmHg": -2.805112750871417,
+      "endo_work_diastole_mJ_per_m": -37.43676910734957,
+      "endo_work_e_wave_mJ_per_m": -34.885949561784784,
+      "endo_work_systole_mJ_per_m": 1043.6341068253212,
+      "dissipation_cycle_mJ_per_m": 16.6179628444643,
+      "dissipation_diastole_mJ_per_m": 8.464712629908703,
+      "ke_peak_e_mJ_per_m": 88.37582595919024,
+      "flux_mismatch": 0.06672122255540926,
+      "speed_cavity_diastole_mm_s": 108.1744122374175,
+      "speed_layer_diastole_mm_s": 50.60609840496709,
+      "u_max_m_s": 1.2522452646676558,
+      "residual_at_ed": [
+        0.45548846511223035,
+        0.2906915653643878,
+        0.20734560609247818
+      ],
+      "layer_old_blood_at_ed": 0.6246878641947187,
+      "ef": 0.5390393652932401,
+      "mixing_reference": [
+        0.46096063470675985,
+        0.2124847067492589,
+        0.09794708528861812
+      ],
+      "steps": 25357,
+      "wall_clock_s": 1946.382274389267
+    }
+  },
+  "resolved_coarse_0.5mm": {
+    "trab": {
+      "ivpg_peak_e_mmHg": 3.3215132708116775,
+      "p_min_e_mmHg": -16.382326615008772,
+      "p_apex_min_e_mmHg": -4.375573295212449,
+      "endo_work_diastole_mJ_per_m": -33.05136227723677,
+      "endo_work_e_wave_mJ_per_m": -29.81479663746471,
+      "endo_work_systole_mJ_per_m": 588.3036484873867,
+      "dissipation_cycle_mJ_per_m": 27.919227799281458,
+      "dissipation_diastole_mJ_per_m": 16.86426521363377,
+      "ke_peak_e_mJ_per_m": 94.45034343237171,
+      "flux_mismatch": 0.08656940448957494,
+      "speed_cavity_diastole_mm_s": 118.5490024240346,
+      "speed_layer_diastole_mm_s": 29.503283822636863,
+      "u_max_m_s": 1.8525477497726477,
+      "residual_at_ed": [
+        0.42464711109037406,
+        0.2569580192563088,
+        0.16548248204739927
+      ],
+      "layer_old_blood_at_ed": 0.49773746321281154,
+      "ef": 0.5391570531686718,
+      "mixing_reference": [
+        0.4608429468313282,
+        0.2123762216441824,
+        0.09787208381940832
+      ]
+    },
+    "smooth_crest": {
+      "ivpg_peak_e_mmHg": 2.4219481666171587,
+      "p_min_e_mmHg": -8.026280944512953,
+      "p_apex_min_e_mmHg": -3.254013928791625,
+      "endo_work_diastole_mJ_per_m": -32.799842127269926,
+      "endo_work_e_wave_mJ_per_m": -29.528376048712474,
+      "endo_work_systole_mJ_per_m": 549.5942105152501,
+      "dissipation_cycle_mJ_per_m": 20.79376257859899,
+      "dissipation_diastole_mJ_per_m": 11.555539364912846,
+      "ke_peak_e_mJ_per_m": 87.72880550311098,
+      "flux_mismatch": 0.09785811093842443,
+      "speed_cavity_diastole_mm_s": 114.03479288419295,
+      "speed_layer_diastole_mm_s": null,
+      "u_max_m_s": 1.058816857986798,
+      "residual_at_ed": [
+        0.42885669446876035,
+        0.25001081208293935,
+        0.16401318917378982
+      ],
+      "layer_old_blood_at_ed": 0.0,
+      "ef": 0.5526786231446885,
+      "mixing_reference": [
+        0.4473213768553115,
+        0.2000964141917316,
+        0.08950740350005607
+      ]
+    },
+    "smooth_vol": {
+      "ivpg_peak_e_mmHg": 2.0021305730378005,
+      "p_min_e_mmHg": -4.191555222145813,
+      "p_apex_min_e_mmHg": -2.7505255608723593,
+      "endo_work_diastole_mJ_per_m": -36.289845827384866,
+      "endo_work_e_wave_mJ_per_m": -33.10156027556501,
+      "endo_work_systole_mJ_per_m": 573.4173819318642,
+      "dissipation_cycle_mJ_per_m": 16.43403391431201,
+      "dissipation_diastole_mJ_per_m": 8.273582669515122,
+      "ke_peak_e_mJ_per_m": 87.50458099168513,
+      "flux_mismatch": 0.09907087310074386,
+      "speed_cavity_diastole_mm_s": 107.98403025246941,
+      "speed_layer_diastole_mm_s": 43.453327199762015,
+      "u_max_m_s": 1.0057454775808956,
+      "residual_at_ed": [
+        0.4450144534449619,
+        0.28725669454912206,
+        0.21778854304978926
+      ],
+      "layer_old_blood_at_ed": 0.5376040401594865,
+      "ef": 0.5390393652932401,
+      "mixing_reference": [
+        0.46096063470675985,
+        0.2124847067492589,
+        0.09794708528861812
+      ]
+    }
+  },
+  "endocardial_length_mid_diastole_mm": 159.66696233466422,
+  "film": {
+    "trab": {
+      "0.1mm": {
+        "film_mean_suction_peak_mmHg": 0.11762757657977942,
+        "film_peak_suction_mmHg": 0.23390422117673834,
+        "time_of_peak_ms_after_mitral_opening": 19.400000000000027,
+        "gap_at_peak_mm": 0.5899949079450084,
+        "film_work_mJ_per_m2": 27.940228127503396
+      },
+      "0.2mm": {
+        "film_mean_suction_peak_mmHg": 0.10626607925172273,
+        "film_peak_suction_mmHg": 0.21155002371322668,
+        "time_of_peak_ms_after_mitral_opening": 19.80000000000004,
+        "gap_at_peak_mm": 0.7101809798930352,
+        "film_work_mJ_per_m2": 24.93970010883948
+      },
+      "0.5mm": {
+        "film_mean_suction_peak_mmHg": 0.07862637723952877,
+        "film_peak_suction_mmHg": 0.15703569567960815,
+        "time_of_peak_ms_after_mitral_opening": 19.600000000000005,
+        "gap_at_peak_mm": 1.0000387206759505,
+        "film_work_mJ_per_m2": 17.893330081346118
+      }
+    },
+    "smooth_crest": {
+      "0.1mm": {
+        "film_mean_suction_peak_mmHg": 17.87540391659983,
+        "film_peak_suction_mmHg": 35.76145499898161,
+        "time_of_peak_ms_after_mitral_opening": 3.8000000000000256,
+        "gap_at_peak_mm": 0.11899474543249497,
+        "film_work_mJ_per_m2": 358.90727381113606
+      },
+      "0.2mm": {
+        "film_mean_suction_peak_mmHg": 3.158792149448881,
+        "film_peak_suction_mmHg": 6.319465777148286,
+        "time_of_peak_ms_after_mitral_opening": 5.599999999999994,
+        "gap_at_peak_mm": 0.241231884659954,
+        "film_work_mJ_per_m2": 125.92236784261452
+      },
+      "0.5mm": {
+        "film_mean_suction_peak_mmHg": 0.3190709973391305,
+        "film_peak_suction_mmHg": 0.638332043631593,
+        "time_of_peak_ms_after_mitral_opening": 8.599999999999996,
+        "gap_at_peak_mm": 0.5971241782402411,
+        "film_work_mJ_per_m2": 31.268796056499426
+      }
+    },
+    "smooth_vol": {
+      "0.1mm": {
+        "film_mean_suction_peak_mmHg": 0.008735959123410514,
+        "film_peak_suction_mmHg": 0.01747712166518745,
+        "time_of_peak_ms_after_mitral_opening": 17.600000000000005,
+        "gap_at_peak_mm": 2.5040528782946763,
+        "film_work_mJ_per_m2": 3.6560894228875003
+      },
+      "0.2mm": {
+        "film_mean_suction_peak_mmHg": 0.007771801172395901,
+        "film_peak_suction_mmHg": 0.015548231479657205,
+        "time_of_peak_ms_after_mitral_opening": 18.000000000000014,
+        "gap_at_peak_mm": 2.62245607548196,
+        "film_work_mJ_per_m2": 3.4316622227034954
+      },
+      "0.5mm": {
+        "film_mean_suction_peak_mmHg": 0.005634978908257228,
+        "film_peak_suction_mmHg": 0.01127331419127913,
+        "time_of_peak_ms_after_mitral_opening": 19.199999999999996,
+        "gap_at_peak_mm": 2.9800496789020645,
+        "film_work_mJ_per_m2": 2.9000012094740706
+      }
+    }
+  }
+}
