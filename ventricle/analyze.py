@@ -269,7 +269,7 @@ def fig_film(hist, mets, path):
     ivpg = mets["trab"]["ivpg_peak_e_mmHg"]
     ax.axhline(ivpg, color=MUTED, lw=1, ls=":")
     ax.text(118, ivpg * 1.2, f"resolved peak E wave IVPG, {ivpg:.1f} mmHg", ha="right", fontsize=8, color=MUTED)
-    ax.set_ylim(1e-2, 1e4)
+    ax.set_ylim(1e-2, 1e2)
     style(ax, "Time after mitral opening (ms)", "Peak apical film suction (mmHg)")
     ax.set_title("Subgrid film suction at the apical slit, end systolic crest gap 0.2 mm",
                  fontsize=10, color=INK, loc="left")
