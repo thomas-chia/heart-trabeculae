@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+results/tier2/*.npz
+results/tier2/logs/
