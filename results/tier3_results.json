@@ -1,0 +1,540 @@
+{
+  "calibration": {
+    "smooth": {
+      "r0": 1.14215828405197,
+      "kappa": -0.026211059436025554,
+      "rms": 0.08159895832992796,
+      "n": 6,
+      "re_range": [
+        2.033014719005248,
+        32.57720868712031
+      ],
+      "low_re_ratio": 1.0741130210460397
+    },
+    "mesh": {
+      "r0": 0.7877065994452642,
+      "kappa": -0.0067127497190229,
+      "rms": 0.12114295148086693,
+      "n": 6,
+      "re_range": [
+        2.0322975767599227,
+        33.05605797930182
+      ],
+      "low_re_ratio": 0.7580452649189695
+    }
+  },
+  "convergence_ratio_at_25mms": {
+    "smooth": {
+      "0.1mm": 0.8906675754251872,
+      "0.15mm": 0.8482542697388166,
+      "0.2mm": 0.8763809394562754
+    },
+    "mesh": {
+      "0.1mm": 0.6996601917300922,
+      "0.15mm": 0.7148135518379112,
+      "0.2mm": 0.6743385660321376
+    }
+  },
+  "fsi_validation": {
+    "smooth": {
+      "0.5mmHg": {
+        "dns_ms": [
+          21.29221089288514,
+          26.926838577511262
+        ],
+        "targets_mm": [
+          1.1989122995228179,
+          1.6780120197791253
+        ],
+        "calibrated_ms": [
+          19.72017351011379,
+          24.839667290214642
+        ],
+        "calibrated_err": [
+          -0.07383157111677174,
+          -0.07751267499482029
+        ],
+        "tier1_with_inertia_ms": [
+          19.768396123920343,
+          25.04510130010027
+        ],
+        "tier1_with_inertia_err": [
+          -0.07156677043218584,
+          -0.06988333487402343
+        ],
+        "quasi_static_tier1_ms": [
+          5.899967928885071,
+          6.521617432029743
+        ],
+        "quasi_static_tier1_err": [
+          -0.722904870773351,
+          -0.757802334898815
+        ]
+      },
+      "2mmHg": {
+        "dns_ms": [
+          11.219706307528599,
+          13.97089233216538
+        ],
+        "targets_mm": [
+          1.2032678529542884,
+          1.6857616560803992
+        ],
+        "calibrated_ms": [
+          10.492433135230401,
+          13.027744938108148
+        ],
+        "calibrated_err": [
+          -0.06482105256268489,
+          -0.0675080282370949
+        ],
+        "tier1_with_inertia_ms": [
+          10.57539789136265,
+          13.17512867922621
+        ],
+        "tier1_with_inertia_err": [
+          -0.05742649571260239,
+          -0.05695868481550559
+        ],
+        "quasi_static_tier1_ms": [
+          2.548737641532315,
+          2.7783031588708464
+        ],
+        "quasi_static_tier1_err": [
+          -0.7728338361386454,
+          -0.8011363130704028
+        ]
+      }
+    },
+    "mesh": {
+      "0.5mmHg": {
+        "dns_ms": [
+          16.698504753970127,
+          21.468643211204963
+        ],
+        "targets_mm": [
+          1.2023540514147775,
+          1.6841843270770098
+        ],
+        "calibrated_ms": [
+          15.407969529328446,
+          19.77169333346283
+        ],
+        "calibrated_err": [
+          -0.07728447808088024,
+          -0.0790431822378257
+        ],
+        "tier1_with_inertia_ms": [
+          15.575447433937494,
+          20.052590949082195
+        ],
+        "tier1_with_inertia_err": [
+          -0.06725496303886846,
+          -0.06595909430288072
+        ],
+        "quasi_static_tier1_ms": [
+          3.3993131585856493,
+          4.137062627812648
+        ],
+        "quasi_static_tier1_err": [
+          -0.7964300870844468,
+          -0.8072974343505125
+        ]
+      },
+      "2mmHg": {
+        "dns_ms": [
+          9.09418260808769,
+          11.497542475236267
+        ],
+        "targets_mm": [
+          1.1959618700532249,
+          1.6725195025500124
+        ],
+        "calibrated_ms": [
+          8.56844077607515,
+          10.790080721667975
+        ],
+        "calibrated_err": [
+          -0.05781078461575917,
+          -0.061531562513645444
+        ],
+        "tier1_with_inertia_ms": [
+          8.6222101659816,
+          10.875241469566268
+        ],
+        "tier1_with_inertia_err": [
+          -0.05189828074117975,
+          -0.05412469725685565
+        ],
+        "quasi_static_tier1_ms": [
+          1.5477713729833862,
+          1.8538584219013983
+        ],
+        "quasi_static_tier1_err": [
+          -0.8298064334438464,
+          -0.8387604632995016
+        ]
+      }
+    }
+  },
+  "physiology": {
+    "1mmHg_0.1mm": {
+      "no_film_ms": 22.749781548027403,
+      "tier2_kinematics_ms": 38.84500000000002,
+      "trab": {
+        "open_ms": 32.060857995036564,
+        "open_quasi_static_ms": 12.635844070790645,
+        "film_delay_ms": 9.31107644700916,
+        "peak_mean_suction_mmHg": 0.38045576958946525,
+        "peak_suction_mmHg": 0.2290058029855057,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_crest": {
+        "open_ms": 211.41811052512347,
+        "open_quasi_static_ms": 170.36015085947773,
+        "film_delay_ms": 188.66832897709605,
+        "peak_mean_suction_mmHg": 0.9973919873883385,
+        "peak_suction_mmHg": 1.9742446338455024,
+        "gap_at_peak_e_mm": 0.1266738689767519
+      },
+      "smooth_vol": {
+        "open_ms": 28.237457753375583,
+        "open_quasi_static_ms": 3.231827347228195,
+        "film_delay_ms": 5.48767620534818,
+        "peak_mean_suction_mmHg": 0.2605855201332882,
+        "peak_suction_mmHg": 0.010409672154461726,
+        "gap_at_peak_e_mm": 2.0
+      }
+    },
+    "1mmHg_0.2mm": {
+      "no_film_ms": 22.308711428263212,
+      "tier2_kinematics_ms": 37.7825,
+      "trab": {
+        "open_ms": 30.79192287173746,
+        "open_quasi_static_ms": 11.663352103688611,
+        "film_delay_ms": 8.483211443474248,
+        "peak_mean_suction_mmHg": 0.3622718207395674,
+        "peak_suction_mmHg": 0.2062624723173482,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_crest": {
+        "open_ms": 81.28764931449149,
+        "open_quasi_static_ms": 56.09815370716863,
+        "film_delay_ms": 58.97893788622828,
+        "peak_mean_suction_mmHg": 0.8938275976437245,
+        "peak_suction_mmHg": 1.5584372738573304,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_vol": {
+        "open_ms": 27.51464396787279,
+        "open_quasi_static_ms": 3.0220064374361697,
+        "film_delay_ms": 5.205932539609579,
+        "peak_mean_suction_mmHg": 0.2542723205533435,
+        "peak_suction_mmHg": 0.008823111026204148,
+        "gap_at_peak_e_mm": 2.0
+      }
+    },
+    "1mmHg_0.5mm": {
+      "no_film_ms": 20.88761592499839,
+      "tier2_kinematics_ms": 34.34000000000004,
+      "trab": {
+        "open_ms": 27.591437909498584,
+        "open_quasi_static_ms": 9.456573949348597,
+        "film_delay_ms": 6.703821984500196,
+        "peak_mean_suction_mmHg": 0.3207654075294475,
+        "peak_suction_mmHg": 0.14964164490940715,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_crest": {
+        "open_ms": 38.69854428785964,
+        "open_quasi_static_ms": 17.181873181687216,
+        "film_delay_ms": 17.81092836286125,
+        "peak_mean_suction_mmHg": 0.5504420228507252,
+        "peak_suction_mmHg": 0.49923764396729337,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_vol": {
+        "open_ms": 25.330957982021012,
+        "open_quasi_static_ms": 2.4746412222524232,
+        "film_delay_ms": 4.4433420570226225,
+        "peak_mean_suction_mmHg": 0.23735626293986714,
+        "peak_suction_mmHg": 0.005549744406520672,
+        "gap_at_peak_e_mm": 2.0
+      }
+    },
+    "2mmHg_0.1mm": {
+      "no_film_ms": 17.734601681436192,
+      "tier2_kinematics_ms": 38.84500000000002,
+      "trab": {
+        "open_ms": 24.465874366114612,
+        "open_quasi_static_ms": 8.66866837433423,
+        "film_delay_ms": 6.731272684678421,
+        "peak_mean_suction_mmHg": 0.6249025080999656,
+        "peak_suction_mmHg": 0.29302613291018265,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_crest": {
+        "open_ms": 120.69511975676815,
+        "open_quasi_static_ms": 95.00912199602374,
+        "film_delay_ms": 102.96051807533196,
+        "peak_mean_suction_mmHg": 1.9616994441559679,
+        "peak_suction_mmHg": 3.794712038582873,
+        "gap_at_peak_e_mm": 0.19826640116334937
+      },
+      "smooth_vol": {
+        "open_ms": 21.9024056785641,
+        "open_quasi_static_ms": 2.2673672343456284,
+        "film_delay_ms": 4.167803997127909,
+        "peak_mean_suction_mmHg": 0.44955356455436923,
+        "peak_suction_mmHg": 0.011003516744418355,
+        "gap_at_peak_e_mm": 2.0
+      }
+    },
+    "2mmHg_0.2mm": {
+      "no_film_ms": 17.39630684623067,
+      "tier2_kinematics_ms": 37.7825,
+      "trab": {
+        "open_ms": 23.558809702728954,
+        "open_quasi_static_ms": 8.019861997253665,
+        "film_delay_ms": 6.1625028564982856,
+        "peak_mean_suction_mmHg": 0.5969238994608675,
+        "peak_suction_mmHg": 0.2619417317702751,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_crest": {
+        "open_ms": 53.61773611609349,
+        "open_quasi_static_ms": 35.21606809575397,
+        "film_delay_ms": 36.22142926986282,
+        "peak_mean_suction_mmHg": 1.5622722355466754,
+        "peak_suction_mmHg": 2.4906568943847462,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_vol": {
+        "open_ms": 21.355399267135578,
+        "open_quasi_static_ms": 2.1212391273911093,
+        "film_delay_ms": 3.959092420904909,
+        "peak_mean_suction_mmHg": 0.4388130757328642,
+        "peak_suction_mmHg": 0.00941428571172402,
+        "gap_at_peak_e_mm": 2.0
+      }
+    },
+    "2mmHg_0.5mm": {
+      "no_film_ms": 16.304998892709346,
+      "tier2_kinematics_ms": 34.34000000000004,
+      "trab": {
+        "open_ms": 21.223979758037437,
+        "open_quasi_static_ms": 6.536379135118669,
+        "film_delay_ms": 4.918980865328094,
+        "peak_mean_suction_mmHg": 0.5361287236169783,
+        "peak_suction_mmHg": 0.18500217316526615,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_crest": {
+        "open_ms": 28.75905054930429,
+        "open_quasi_static_ms": 11.664460613948402,
+        "film_delay_ms": 12.454051656594945,
+        "peak_mean_suction_mmHg": 0.9089067766713643,
+        "peak_suction_mmHg": 0.6615979890360978,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_vol": {
+        "open_ms": 19.696779150821243,
+        "open_quasi_static_ms": 1.7393316514084782,
+        "film_delay_ms": 3.391780258111897,
+        "peak_mean_suction_mmHg": 0.41001748483964073,
+        "peak_suction_mmHg": 0.007090162184143536,
+        "gap_at_peak_e_mm": 2.0
+      }
+    },
+    "5mmHg_0.1mm": {
+      "no_film_ms": 12.830793283585033,
+      "tier2_kinematics_ms": 38.84500000000002,
+      "trab": {
+        "open_ms": 17.35310671284161,
+        "open_quasi_static_ms": 5.341026260854302,
+        "film_delay_ms": 4.5223134292565765,
+        "peak_mean_suction_mmHg": 1.209155296117,
+        "peak_suction_mmHg": 0.3954647968575552,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_crest": {
+        "open_ms": 63.40485183515765,
+        "open_quasi_static_ms": 48.28406328884176,
+        "film_delay_ms": 50.57405855157262,
+        "peak_mean_suction_mmHg": 4.449544307630285,
+        "peak_suction_mmHg": 8.101477937706957,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_vol": {
+        "open_ms": 15.768579880428211,
+        "open_quasi_static_ms": 1.42412047585837,
+        "film_delay_ms": 2.9377865968431784,
+        "peak_mean_suction_mmHg": 0.9054712510409273,
+        "peak_suction_mmHg": 0.014600261663676414,
+        "gap_at_peak_e_mm": 2.0
+      }
+    },
+    "5mmHg_0.2mm": {
+      "no_film_ms": 12.59013319189119,
+      "tier2_kinematics_ms": 37.7825,
+      "trab": {
+        "open_ms": 16.75085402164894,
+        "open_quasi_static_ms": 4.950857206499031,
+        "film_delay_ms": 4.160720829757752,
+        "peak_mean_suction_mmHg": 1.1604946638778693,
+        "peak_suction_mmHg": 0.3481691192663332,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_crest": {
+        "open_ms": 33.08318934697278,
+        "open_quasi_static_ms": 20.164281666784262,
+        "film_delay_ms": 20.493056155081593,
+        "peak_mean_suction_mmHg": 3.04283477393629,
+        "peak_suction_mmHg": 4.228313628466443,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_vol": {
+        "open_ms": 15.384417463855641,
+        "open_quasi_static_ms": 1.3329302812068102,
+        "film_delay_ms": 2.7942842719644503,
+        "peak_mean_suction_mmHg": 0.8841526343136843,
+        "peak_suction_mmHg": 0.013176343839649721,
+        "gap_at_peak_e_mm": 2.0
+      }
+    },
+    "5mmHg_0.5mm": {
+      "no_film_ms": 11.812780318575813,
+      "tier2_kinematics_ms": 34.34000000000004,
+      "trab": {
+        "open_ms": 15.167341514434002,
+        "open_quasi_static_ms": 4.052933448657966,
+        "film_delay_ms": 3.354561195858188,
+        "peak_mean_suction_mmHg": 1.041324392939159,
+        "peak_suction_mmHg": 0.2581477046234902,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_crest": {
+        "open_ms": 19.91239552831292,
+        "open_quasi_static_ms": 7.123689880660989,
+        "film_delay_ms": 8.099615209737108,
+        "peak_mean_suction_mmHg": 1.735824094125729,
+        "peak_suction_mmHg": 0.9190004453380928,
+        "gap_at_peak_e_mm": 2.0
+      },
+      "smooth_vol": {
+        "open_ms": 14.215362294112849,
+        "open_quasi_static_ms": 1.0942210828538754,
+        "film_delay_ms": 2.4025819755370357,
+        "peak_mean_suction_mmHg": 0.8269791741808592,
+        "peak_suction_mmHg": 0.009928204823208855,
+        "gap_at_peak_e_mm": 2.0
+      }
+    }
+  },
+  "runs": {
+    "mesh_fsi_0.5mmHg": {
+      "steps": 152,
+      "wall_s": 1230.2143983840942,
+      "wall_speed_ratio": 0.9981743512896744,
+      "seepage": 0.001909648524731534,
+      "cg_iters": 31.30263157894737
+    },
+    "mesh_fsi_2mmHg": {
+      "steps": 131,
+      "wall_s": 956.5038552284241,
+      "wall_speed_ratio": 0.9978536325787408,
+      "seepage": 0.002209784639135051,
+      "cg_iters": 29.907692307692308
+    },
+    "mesh_kin_25mms": {
+      "steps": 252,
+      "wall_s": 1864.2286703586578,
+      "wall_speed_ratio": 0.9986236091317616,
+      "seepage": 0.0014568147534148776,
+      "cg_iters": 29.761904761904763
+    },
+    "mesh_kin_25mms_dx150": {
+      "steps": 252,
+      "wall_s": 772.4359257221222,
+      "wall_speed_ratio": 0.9977822773727952,
+      "seepage": 0.0026054804522132853,
+      "cg_iters": 19.206349206349206
+    },
+    "mesh_kin_25mms_dx200": {
+      "steps": 252,
+      "wall_s": 109.53943347930908,
+      "wall_speed_ratio": 0.996709347681533,
+      "seepage": 0.003072558108445677,
+      "cg_iters": 14.761904761904763
+    },
+    "mesh_kin_80mms": {
+      "steps": 123,
+      "wall_s": 984.9503166675568,
+      "wall_speed_ratio": 0.9985763539904697,
+      "seepage": 0.0014842041666031593,
+      "cg_iters": 31.24590163934426
+    },
+    "mesh_kin_8mms": {
+      "steps": 762,
+      "wall_s": 3463.998366355896,
+      "wall_speed_ratio": 0.9986243985500547,
+      "seepage": 0.0014594186674617004,
+      "cg_iters": 15.438320209973753
+    },
+    "smooth_fsi_0.5mmHg": {
+      "steps": 203,
+      "wall_s": 1533.2017879486084,
+      "wall_speed_ratio": 0.9986329458584051,
+      "seepage": 0.0011767922865579764,
+      "cg_iters": 26.376237623762375
+    },
+    "smooth_fsi_2mmHg": {
+      "steps": 180,
+      "wall_s": 1235.7156083583832,
+      "wall_speed_ratio": 0.998273369075342,
+      "seepage": 0.0014866547675451238,
+      "cg_iters": 24.788888888888888
+    },
+    "smooth_kin_25mms": {
+      "steps": 259,
+      "wall_s": 1755.2688772678375,
+      "wall_speed_ratio": 0.9990468134563842,
+      "seepage": 0.0007992400867941449,
+      "cg_iters": 28.88372093023256
+    },
+    "smooth_kin_25mms_dx150": {
+      "steps": 252,
+      "wall_s": 749.3226039409637,
+      "wall_speed_ratio": 0.998479188260615,
+      "seepage": 0.0016572713039378424,
+      "cg_iters": 18.03174603174603
+    },
+    "smooth_kin_25mms_dx200": {
+      "steps": 252,
+      "wall_s": 87.39247369766235,
+      "wall_speed_ratio": 0.997862049137159,
+      "seepage": 0.0014003281082681709,
+      "cg_iters": 11.73015873015873
+    },
+    "smooth_kin_80mms": {
+      "steps": 181,
+      "wall_s": 1202.6788523197174,
+      "wall_speed_ratio": 0.9990304281446271,
+      "seepage": 0.0007809570200660376,
+      "cg_iters": 27.455555555555556
+    },
+    "smooth_kin_8mms": {
+      "steps": 762,
+      "wall_s": 3610.175369501114,
+      "wall_speed_ratio": 0.9990326894941318,
+      "seepage": 0.0008236029039973868,
+      "cg_iters": 16.37270341207349
+    }
+  },
+  "physiology_params": {
+    "R_patch_mm": 8.75,
+    "m_wall": 10.6,
+    "tau_ms": 20.0,
+    "h_open_mm": 2.0
+  }
+}

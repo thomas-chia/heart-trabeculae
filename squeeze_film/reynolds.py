@@ -32,17 +32,29 @@ RHO_BLOOD = 1060.0  # kg / m^3
 
 @dataclass
 class Grid:
-    """Cell centred square grid covering the disk of radius R."""
+    """Cell centred square grid covering a disk of radius R, or the square
+    patch of half side R itself (shape="square")."""
 
     R: float
     n: int
+    shape: str = "disk"
 
     def __post_init__(self) -> None:
+        assert self.shape in ("disk", "square")
         self.dx = 2.0 * self.R / self.n
         c = -self.R + self.dx * (np.arange(self.n) + 0.5)
         self.x, self.y = np.meshgrid(c, c, indexing="ij")
         self.r = np.hypot(self.x, self.y)
-        self.inside = self.r < self.R
+        if self.shape == "disk":
+            self.inside = self.r < self.R
+        else:
+            self.inside = np.ones_like(self.r, dtype=bool)
+
+    def edge(self, across: np.ndarray) -> np.ndarray:
+        """Coordinate of the patch rim along an axis, at offset `across`."""
+        if self.shape == "disk":
+            return np.sqrt(np.maximum(self.R**2 - across**2, 0.0))
+        return np.full_like(across, self.R)
 
 
 @dataclass
@@ -158,6 +170,7 @@ def solve(
     hdot: float,
     mu: float = MU_BLOOD,
     duct_correction: bool = True,
+    kernel: str = "viscous",
 ) -> Solution:
     """Finite volume solve of the Reynolds squeeze film equation.
 
@@ -165,10 +178,18 @@ def solve(
     continuous across the sharp land/groove steps. The rim uses a cut cell
     distance to the true circle so the curved Dirichlet boundary is not
     staircased.
+
+    kernel="inertial" solves the unsteady inertial counterpart instead,
+    div(h grad p) = rho hddot, obtained from the gap integrated momentum
+    balance rho dq/dt = -h grad p. Pass rho * hddot as `hdot`; the returned
+    force per unit rho hddot is minus the added mass of the film.
     """
     h = h0 + surface.depth
-    h3 = effective_h3(h, surface.width, h0) if duct_correction else h**3
-    k = h3 / (12.0 * mu)
+    if kernel == "inertial":
+        k = h.copy()
+    else:
+        h3 = effective_h3(h, surface.width, h0) if duct_correction else h**3
+        k = h3 / (12.0 * mu)
     inside = grid.inside
     idx = -np.ones(inside.shape, dtype=np.int64)
     idx[inside] = np.arange(inside.sum())
@@ -193,11 +214,11 @@ def solve(
         vals.append(kf)
         np.add.at(diag, me[a], -kf)
 
-        # rim faces: distance from the cell centre to the circle along the axis
+        # rim faces: distance from the cell centre to the rim along the axis
         b = ~nb_in
         xc, yc = grid.x[I[b], J[b]], grid.y[I[b], J[b]]
         along, across, sign = (xc, yc, di) if di else (yc, xc, dj)
-        edge = np.sqrt(np.maximum(R**2 - across**2, 0.0))
+        edge = grid.edge(across)
         theta = np.clip((sign * edge - along) * sign / dx, 0.05, 1.5)
         np.add.at(diag, me[b], -k[I[b], J[b]] / theta)
 
@@ -224,6 +245,19 @@ def disk_center_pressure(R: float, h: float, hdot: float, mu: float = MU_BLOOD) 
 
 def disk_force(R: float, h: float, hdot: float, mu: float = MU_BLOOD) -> float:
     return -1.5 * np.pi * mu * R**4 * hdot / h**3
+
+
+def square_force(L: float, h: float, hdot: float, mu: float = MU_BLOOD, terms: int = 199) -> float:
+    """Exact squeeze force on a smooth square plate of side L (Fourier series)."""
+    m = np.arange(1, terms + 1, 2)[:, None]
+    n = np.arange(1, terms + 1, 2)[None, :]
+    series = (1.0 / (m**2 * n**2 * (m**2 + n**2))).sum()
+    return -768.0 * mu * hdot * L**4 / (np.pi**6 * h**3) * series
+
+
+def disk_added_mass(R: float, h: float, rho: float = RHO_BLOOD) -> float:
+    """Added mass of the film between two disks, F = -M_a hddot."""
+    return np.pi * rho * R**4 / (8.0 * h)
 
 
 def strip_center_pressure(a: float, h: float, hdot: float, mu: float = MU_BLOOD) -> float:
