@@ -46,11 +46,12 @@ class FilmModel:
     area: float
     kappa: float = 0.0
     r0: float = 1.0
+    re_max: float = np.inf  # do not extrapolate the inertia term past its calibration
     extra_gap: float = 0.0  # a wall sitting further back (volume matched control)
 
     @classmethod
     def build(cls, shape="disk", R=8.75e-3, surface="smooth", pitch=2e-3, width=1e-3,
-              depth=2e-3, n=160, h=None, kappa=0.0, r0=1.0, extra_gap=0.0):
+              depth=2e-3, n=160, h=None, kappa=0.0, r0=1.0, re_max=np.inf, extra_gap=0.0):
         h = np.geomspace(0.03e-3, 12e-3, 48) if h is None else np.asarray(h)
         g = rf.Grid(R=R, n=n, shape=shape)
         if surface == "smooth":
@@ -67,11 +68,15 @@ class FilmModel:
         Ma = np.array([-rf.solve(g, surf, hh, RHO, kernel="inertial").force for hh in h])
         area = float(g.inside.sum() * g.dx**2)
         return cls(h=h, C=C, Ma=Ma, pmin_per_hdot=P, area=area, kappa=kappa, r0=r0,
-                   extra_gap=extra_gap)
+                   re_max=re_max, extra_gap=extra_gap)
 
     def _interp(self, arr, h):
         x = np.log(np.clip(np.asarray(h, dtype=float) + self.extra_gap, self.h[0], self.h[-1]))
         return np.exp(np.interp(x, np.log(self.h), np.log(arr)))
+
+    def reynolds(self, h, hdot):
+        hg = np.asarray(h) + self.extra_gap
+        return np.minimum(RHO * np.abs(hdot) * hg / MU, self.re_max)
 
     def resistance(self, h):
         return self._interp(self.C, h)
@@ -82,15 +87,12 @@ class FilmModel:
     def force(self, h, hdot, hddot=0.0, kappa=None, r0=None):
         k = self.kappa if kappa is None else kappa
         r = self.r0 if r0 is None else r0
-        hg = np.asarray(h) + self.extra_gap
-        re = RHO * np.abs(hdot) * hg / MU
-        return -self.resistance(h) * hdot * (r + k * re) - self.added_mass(h) * hddot
+        return -self.resistance(h) * hdot * (r + k * self.reynolds(h, hdot)) - self.added_mass(h) * hddot
 
     def peak_pressure(self, h, hdot, kappa=None):
         """Peak film suction (Pa), viscous peak scaled by the inertial factor."""
         k = self.kappa if kappa is None else kappa
-        hg = np.asarray(h) + self.extra_gap
-        return self._interp(self.pmin_per_hdot, h) * hdot * (self.r0 + k * RHO * np.abs(hdot) * hg / MU)
+        return self._interp(self.pmin_per_hdot, h) * hdot * (self.r0 + k * self.reynolds(h, hdot))
 
 
 def recoil(sigma0, tau):
@@ -113,8 +115,7 @@ def open_walls(model: FilmModel, sigma, m_wall, h0, h_end, t_max=1.0, kappa=None
         s = sigma(t)
         if not inertia:
             return [s * A / (r * model.resistance(h)), 0.0]
-        hg = h + model.extra_gap
-        visc = model.resistance(h) * hd * (r + k * RHO * abs(hd) * hg / MU)
+        visc = model.resistance(h) * hd * (r + k * model.reynolds(h, hd))
         hdd = (s * A - visc) / (0.5 * m_wall * A + model.added_mass(h))
         return [hd, hdd]
 
@@ -136,7 +137,7 @@ def open_walls(model: FilmModel, sigma, m_wall, h0, h_end, t_max=1.0, kappa=None
 
 def time_to_gap(res, gap):
     """First time the opening trajectory reaches `gap` (nan if it never does)."""
-    idx = np.nonzero(res["h"] >= gap)[0]
+    idx = np.nonzero(res["h"] >= gap * (1 - 1e-9))[0]
     if not len(idx):
         return np.nan
     i = idx[0]

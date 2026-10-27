@@ -114,7 +114,8 @@ def convergence(surface):
 
 def dns_patch_model(surface, cal):
     return FilmModel.build(shape="square", R=6e-3, surface=surface, depth=1.5e-3, n=120,
-                           h=np.geomspace(0.2e-3, 8e-3, 36), kappa=cal["kappa"], r0=cal["r0"])
+                           h=np.geomspace(0.2e-3, 8e-3, 36), kappa=cal["kappa"], r0=cal["r0"],
+                           re_max=cal["re_range"][1])
 
 
 def validate_fsi(surface, cal):
@@ -175,8 +176,7 @@ def physiology(cals):
                 r = open_walls(m, sig, M_WALL, h0, H_OPEN, t_max=1.0)
                 r_qs = open_walls(m, sig, M_WALL, h0, H_OPEN, t_max=1.0, inertia=False, r0=1.0)
                 t_open = time_to_gap(r, H_OPEN)
-                p_peak = np.max(-m.peak_pressure(r["h"], np.maximum(r["hdot"], 0))) if False else \
-                    float(np.max(m.peak_pressure(r["h"], np.maximum(r["hdot"], 0))))
+                p_peak = float(np.max(m.peak_pressure(r["h"], np.maximum(r["hdot"], 0))))
                 row[name] = dict(
                     open_ms=1e3 * t_open,
                     open_quasi_static_ms=1e3 * time_to_gap(r_qs, H_OPEN),
@@ -269,7 +269,8 @@ def main():
         cals[surface], pts[surface] = calibrate(surface)
     conv = {s: convergence(s) for s in ("smooth", "mesh")}
     val = {s: validate_fsi(s, cals[s]) for s in ("smooth", "mesh")}
-    phys_cal = {s: dict(kappa=cals[s]["kappa"], r0=cals[s]["r0"]) for s in cals}
+    phys_cal = {s: dict(kappa=cals[s]["kappa"], r0=cals[s]["r0"], re_max=cals[s]["re_range"][1])
+                for s in cals}
     table, curves = physiology(phys_cal)
     runs = {}
     for f in sorted(RUNS.glob("*.npz")):
