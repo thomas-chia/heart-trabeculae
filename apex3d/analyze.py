@@ -61,13 +61,14 @@ def load(name):
 
 
 def windows(d, dx, t_min):
-    """Average over windows of one cell of wall travel (2 dx of gap), the
-    period of the residual immersed boundary force oscillation."""
+    """Average over windows of two cells of wall travel (4 dx of gap), the
+    period of the residual immersed boundary force oscillation seen in the
+    runs (alternate one cell windows swing high and low)."""
     m = d["t"] > t_min
     h = d["h"][m]
     C = -d["F_lub"][m] / np.where(d["hdot"][m] == 0, np.nan, d["hdot"][m])
     out = []
-    edges = np.arange(h.min(), h.max() + 1e-12, 2 * dx)
+    edges = np.arange(h.min(), h.max() + 1e-12, 4 * dx)
     for a, b in zip(edges[:-1], edges[1:]):
         w = (h >= a) & (h < b)
         if w.sum() < 3:
